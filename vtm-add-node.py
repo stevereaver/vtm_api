@@ -3,7 +3,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 
-# curl --insecure --user admin:reaver1 https://vtm-test:9070/api/tm/5.1/config/active/|json_pp
+# curl --insecure --user admin:xxxxxx https://vtm-test:9070/api/tm/5.1/config/active/|json_pp
  
 url = 'https://vtm-test:9070/api/tm/5.1/config/active'
 
