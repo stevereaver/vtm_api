@@ -1,17 +1,19 @@
 #!/usr/bin/python
-import requests
+import requests, json, pprint
 from requests.auth import HTTPBasicAuth
-import json
+from pprint import pprint
 
-# curl --insecure --user admin:xxxxxx https://vtm-test:9070/api/tm/5.1/config/active/|json_pp
- 
-url = 'https://vtm-test:9070/api/tm/5.1/config/active'
 
-#r = requests.get('<MY_URI>', headers={'Authorization': 'TOK:<MY_TOKEN>'})
-# admin:xxxxxx   BASE64 =  YWRtaW46cmVhdmUx
+url = 'https://vtm-test:9070/api/tm/5.1/config/active/vservers'
 
 requests.packages.urllib3.disable_warnings()
-#response = requests.get(url, headers={'Authorization': 'Basic:YWRtaW46cmVhdmUx'},verify=False)
-response = requests.get(url, auth=HTTPBasicAuth('admin', 'xxxxxx'),verify=False)
-#print response.text
+response = requests.get(url, auth=HTTPBasicAuth('admin', 'reaver1'),verify=False)
+
+#print response.json()
+parsed_response = json.loads(response.text)
 print json.dumps (response.json(), sort_keys=True, indent=4, separators=(',', ': '))
+
+
+# The following will print the 1st (0) 'children' in the dict, then print the value stored there
+print parsed_response['children'][0]['href']
+print parsed_response['children'][0]['name']
